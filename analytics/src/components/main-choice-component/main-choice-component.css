@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+
+.choice-list{
+  display: grid;
+  grid-template-columns: auto auto;
+
+}
+
+.choice-card{
+  padding: 10px;
+}

@@ -7,6 +7,8 @@ import {Component, Host, h, State} from '@stencil/core';
 })
 export class MainChoiceComponent {
 
+  @State() backgroundColor: string = 'white';
+
   choices = [
     {
       name: "choice1",
@@ -19,6 +21,19 @@ export class MainChoiceComponent {
     {
       name: "choice3",
       value: 8
+    }
+    ,
+    {
+      name: "choice4",
+      value: 3
+    },
+    {
+      name: "choice5",
+      value: 9
+    },
+    {
+      name: "choice6",
+      value: 11
     }
   ]
 
@@ -56,6 +71,12 @@ export class MainChoiceComponent {
     }
   }
 
+  getChosenItem(){
+    console.log("getChosenItem check colour")
+    this.backgroundColor = '#3dc2ff';
+
+  }
+
 
   questionContent(){
     return (
@@ -64,9 +85,22 @@ export class MainChoiceComponent {
           <ion-title>
             Main Choices
           </ion-title>
+          <ion-list class="choice-list">
+          {this.choices.map((choice)=>{
+            console.log("Choice: ", choice);
+            return(
 
+              <ion-item>
+                <ion-card class="choice-card" style={{background: this.backgroundColor}}
+                          onClick={() => this.getChosenItem()}>
+                <ion-label>{choice.name}</ion-label>
+                </ion-card>
+              </ion-item>
+
+            )
+          })}
+          </ion-list>
         </ion-card>
-
       </div>
     )
   }
