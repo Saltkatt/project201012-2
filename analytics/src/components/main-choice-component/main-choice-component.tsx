@@ -40,6 +40,7 @@ export class MainChoiceComponent {
   @State() selectedChoice = this.choices[0]
   @State() selectedName = this.selectedChoice.name[0]
   @State() selectedValue = this.selectedChoice.value[0]
+  @State() renderChoice = "choice1"
 
 
   getChoiceComponent(){
@@ -77,6 +78,37 @@ export class MainChoiceComponent {
 
   }
 
+  renderToolBarChoice(){
+    if(this.renderChoice == "choice1"){
+      return(
+        <ion-header>
+          <ion-toolbar>
+            <ion-button class="choice1-button" style={{'--background': "#4bacda"}}
+                        onClick={() => this.renderChoice = "choice1"}>First Choice
+            </ion-button>
+            <ion-button class="choice2-button"
+                        onClick={() => this.renderChoice = "choice2"}>Second Choice
+            </ion-button>
+          </ion-toolbar>
+        </ion-header>
+      )
+    }
+    else if (this.renderChoice == "choice2"){
+      return(
+        <ion-header>
+          <ion-toolbar>
+            <ion-button class="choice1-button"
+                        onClick={() => this.renderChoice = "choice1"}>First Choice
+            </ion-button>
+            <ion-button class="choice2-button" style={{'--background': "#4bacda"}}
+                        onClick={() => this.renderChoice = "choice2"}>Second Choice
+            </ion-button>
+          </ion-toolbar>
+        </ion-header>
+        )
+    }
+  }
+
 
   questionContent(){
     return (
@@ -109,6 +141,7 @@ export class MainChoiceComponent {
     return (
       <Host>
         <div>
+          {this.renderToolBarChoice()}
           {this.questionContent()}
         </div>
       </Host>
